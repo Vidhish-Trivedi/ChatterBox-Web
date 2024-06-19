@@ -2,7 +2,6 @@ import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js";
 
 export const sendMessage = async (req, res) => {
-    // res.send("Send Message Route, sender id: " + req.params.id);
     try {
         const {message} = req.body;
         const {id: receiverId} = req.params;    // receiverId is the id of the user to whom the message is to be sent, from the url params.
@@ -38,3 +37,26 @@ export const sendMessage = async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
     }
 };
+
+export const getMessages = async (req, res) => {
+    try {
+        const {id: receiverId} = req.params;    // receiverId is the id of the user whose messages are to be fetched, from the url params.
+        const senderId = req.user._id;
+
+        let conversation = await Conversation.findOne({
+            members: {$all: [senderId, receiverId]}
+        }).populate("messages"); // Populate the messages field of the conversation object, instead of simply returning the message ids.
+
+        if(!conversation) {
+            res.status(200).json([]);
+        }
+        else {
+            const messages = conversation.messages;
+            res.status(200).json(messages);
+        }
+    }
+    catch (error) {
+        console.log("Error in getMessages controller", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+}
