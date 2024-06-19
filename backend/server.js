@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 
 import authRoutes from './routes/auth.routes.js';
 import messageRoutes from './routes/message.routes.js';
+import userRoutes from './routes/user.routes.js';
 import connectToDB from './db/connectToDB.js';
 
 dotenv.config();
@@ -20,6 +21,8 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 // Message Routes using middleware
 app.use("/api/messages", messageRoutes);
+// User Routes using middleware
+app.use("/api/users", userRoutes);
 
 // Home Route
 app.get("/", (req, res) => {
