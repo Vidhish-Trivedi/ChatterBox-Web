@@ -4,7 +4,7 @@ import { useAuthContext } from '../context/AuthContext';
 
 const useSignup = () => {
     const [loading, setLoading] = useState(false);
-    const {setUser} = useAuthContext();
+    const { setUser } = useAuthContext();
 
     const signup = async (inputs) => {
         const success = handleInputError(inputs);
@@ -22,8 +22,8 @@ const useSignup = () => {
             const data = await res.json();
 
             // console.log(data);
-            
-            if(data.error) {
+
+            if (data.error) {
                 throw new Error(data.error);
             }
             else {
