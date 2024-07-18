@@ -6,12 +6,12 @@ export const signup = async (req, res) => {
     try {
         const {fullName, username, password, confirmPassword, gender} = req.body;
         if(password !== confirmPassword) {
-            return res.status(400).json({message: "Passwords do not match"});
+            return res.status(400).json({error: "Passwords do not match"});
         }
         
         const user = await User.findOne({username});
         if(user) {
-            return res.status(400).json({message: "User already exists"});
+            return res.status(400).json({error: "User already exists"});
         }
         
         // Hash password
@@ -36,12 +36,12 @@ export const signup = async (req, res) => {
             res.status(201).json({message: `User ${newUser.username} with id: ${newUser._id} created successfully`});
         }
         else {
-            res.status(400).json({message: "Invalid user data"});
+            res.status(400).json({error: "Invalid user data"});
         }
     }
     catch (error) {
         console.log(error);
-        res.status(500).json({message: "Internal Server Error"});
+        res.status(500).json({meserror: "Internal Server Error"});
     }
 };
 
@@ -55,12 +55,12 @@ export const login = async (req, res) => {
             res.status(200).json({message: `User ${user.username} logged in successfully`});
         }
         else {
-            res.status(400).json({message: "Invalid credentials"});
+            res.status(400).json({error: "Invalid credentials"});
         }
     }
     catch (error) {
         console.log(error);
-        res.status(500).json({message: "Internal Server Error"});
+        res.status(500).json({error: "Internal Server Error"});
     }
 };
 
@@ -72,6 +72,6 @@ export const logout = (req, res) => {
     }
     catch (error) {
         console.log(error);
-        res.status(500).json({message: "Internal Server Error"});
+        res.status(500).json({error: "Internal Server Error"});
     }
 };
