@@ -18,16 +18,14 @@ export const signup = async (req, res) => {
         const salt = await bcryptjs.genSalt(10);
         const hashedPassword = await bcryptjs.hash(password, salt);
         
-        // Random profile picture API - https://avatar-placeholder.iran.liara.run/public/{girl || boy}
-        const profilePictureMale = "https://avatar-placeholder.iran/public/boy?username=" + username;
-        const profilePictureFemale = "https://avatar-placeholder.iran/public/girl?username=" + username;
+        const profilePicturePH = "https://avatar.iran.liara.run/username?username=" + username;
         
         const newUser = new User({
             fullName: fullName,
             username: username,
             password: hashedPassword,
             gender: gender,
-            profilePicture: gender === "male" ? profilePictureMale : profilePictureFemale
+            profilePicture: profilePicturePH
         });
         if(newUser) {
             // Generate JWT and set cookie here
@@ -41,7 +39,7 @@ export const signup = async (req, res) => {
     }
     catch (error) {
         console.log(error);
-        res.status(500).json({meserror: "Internal Server Error"});
+        res.status(500).json({error: "Internal Server Error"});
     }
 };
 

@@ -1,25 +1,29 @@
 import React from "react";
+import useConversation from "../../state/useConversation";
 
-const Conversation = () => {
-  return (
-    <div>
-      <div className="flex gap-2 items-center hover:bg-sky-500 rounded px-3 py-1 cursor-pointer">
-        <div className="avatar online">
-          <div className="w-12 rounded-full">
-            <img alt="User Avatar" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-          </div>
-        </div>
-      
+const Conversation = ({ conversation, lastIdx }) => {
+    const {selectedConversation, setSelectedConversation} = useConversation();
+    const isSelected = selectedConversation && selectedConversation._id === conversation._id;
 
-        <div className="flex flex-col flex-1">
-          <div className="flex gap-3 justify-between">
-            <p className="font-bold text-gray-200">John Doe</p>
-          </div>
+    return (
+        <div>
+            <div className={`flex gap-2 items-center hover:bg-sky-500 rounded px-3 py-1 cursor-pointer ${isSelected ? "bg-sky-500" : ""}`} onClick={() => setSelectedConversation(conversation)} >
+                <div className="avatar online">
+                    <div className="w-12 rounded-full">
+                        <img alt="User Avatar" src={conversation.profilePicture} />
+                    </div>
+                </div>
+
+
+                <div className="flex flex-col flex-1">
+                    <div className="flex gap-3 justify-between">
+                        <p className="font-bold text-gray-200">{conversation.fullName}</p>
+                    </div>
+                </div>
+            </div>
+            {!lastIdx ? <div className="divider my-0 py-0 h-1"></div> : null}
         </div>
-      </div>
-      <div className="divider my-0 py-0 h-1"></div>
-    </div>
-  );
+    );
 };
 
 export default Conversation;
