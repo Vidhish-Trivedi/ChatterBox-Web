@@ -28,10 +28,10 @@ const useSignup = () => {
             }
             else {
                 // set user to local storage.
-                localStorage.setItem("user", JSON.stringify(data));
+                localStorage.setItem("user", JSON.stringify(data.user));
 
                 // context
-                setUser(data);
+                setUser(data.user);
             }
         } catch (err) {
             toast.error(err.message);
