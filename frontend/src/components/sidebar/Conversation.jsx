@@ -8,7 +8,6 @@ const Conversation = ({ conversation, lastIdx }) => {
     const {onlineUsers} = useSocketContext();
     const isOnline = onlineUsers.includes(conversation._id);
 
-    console.log("isOnline", isOnline, conversation.fullName, conversation._id, onlineUsers);
     return (
         <div>
             <div className={`flex gap-2 items-center hover:bg-sky-500 rounded px-3 py-1 cursor-pointer ${isSelected ? "bg-sky-500" : ""}`} onClick={() => setSelectedConversation(conversation)} >
