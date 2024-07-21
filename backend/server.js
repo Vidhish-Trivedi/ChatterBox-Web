@@ -1,4 +1,5 @@
 import express from 'express';
+import {app, server} from './socket/socket.js';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 
@@ -9,8 +10,6 @@ import connectToDB from './db/connectToDB.js';
 
 dotenv.config();
 const PORT = process.env.PORT || 5000;
-
-const app = express();
 
 // Middleware to parse JSON data from request body
 app.use(express.json());
@@ -29,7 +28,7 @@ app.get("/", (req, res) => {
     res.send("API is running...");
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     connectToDB();
     console.log(`Server running on port ${PORT}`)
 });
