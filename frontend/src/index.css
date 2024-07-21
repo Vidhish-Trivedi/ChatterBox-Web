@@ -2,9 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("./bg4.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("C:\Users\Vidhish17\Desktop\Projects\chat-app\frontend\public\bg4.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
