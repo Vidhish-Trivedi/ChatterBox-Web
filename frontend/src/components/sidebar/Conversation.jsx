@@ -3,14 +3,19 @@ import useConversation from "../../state/useConversation";
 import { useSocketContext } from "../../context/SocketContext";
 
 const Conversation = ({ conversation, lastIdx }) => {
-    const {selectedConversation, setSelectedConversation} = useConversation();
+    const {selectedConversation, setSelectedConversation, setShowSidebar} = useConversation();
     const isSelected = selectedConversation && selectedConversation._id === conversation._id;
     const {onlineUsers} = useSocketContext();
     const isOnline = onlineUsers.includes(conversation._id);
 
+    const handleSelectConversation = () => {
+        setShowSidebar(false);
+        setSelectedConversation(conversation);
+    }
+
     return (
         <div>
-            <div className={`flex gap-2 items-center hover:bg-sky-500 rounded px-3 py-1 cursor-pointer ${isSelected ? "bg-sky-500" : ""}`} onClick={() => setSelectedConversation(conversation)} >
+            <div className={`flex gap-2 items-center hover:bg-sky-500 rounded px-3 py-1 cursor-pointer ${isSelected ? "bg-sky-500" : ""}`} onClick={handleSelectConversation} >
                 <div className={`avatar ${isOnline ? "online": ""}`}>
                     <div className="w-12 rounded-full">
                         <img alt="User Avatar" src={conversation.profilePicture} />
