@@ -15,7 +15,7 @@ const Home = () => {
     }, [setSelectedConversation]);
 
     return (
-        <div className="flex sm:h-[450px] md:h-[550px] rounded-xl overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-20">
+        <div className="flex sm:max-h-[60%] md:h-[80%] rounded-xl overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-20">
             {showSidebar && <Sidebar />}
             {selectedConversation && <MessageContainer />}
         </div>
