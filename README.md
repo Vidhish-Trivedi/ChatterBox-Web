@@ -1,5 +1,7 @@
 # 🌟 ChatterBox 🌟
 
+**Note:** This project is currently under development... 
+
 Welcome to **ChatterBox**, the ultimate web-based chat application for seamless real-time communication! With a sleek design, ChatterBox makes connecting with friends and colleagues easier and more enjoyable than ever.
 Live Site: https://chatterbox-web-prod.onrender.com/
 
